@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy vs Rent Calculator</title>
+</head>
+<body>
+    <h1>Buy vs Rent Calculator</h1>
+    <form id="calculator">
+        <h2>Buying</h2>
+        <label for="homePrice">Home Price:</label>
+        <input type="number" id="homePrice" name="homePrice"><br><br>
+        <label for="downPayment">Down Payment:</label>
+        <input type="number" id="downPayment" name="downPayment"><br><br>
+        <label for="loanTerm">Loan Term (years):</label>
+        <input type="number" id="loanTerm" name="loanTerm"><br><br>
+        <label for="interestRate">Interest Rate (%):</label>
+        <input type="number" id="interestRate" name="interestRate"><br><br>
+
+        <h2>Renting</h2>
+        <label for="monthlyRent">Monthly Rent:</label>
+        <input type="number" id="monthlyRent" name="monthlyRent"><br><br>
+
+        <input type="button" value="Calculate" onclick="calculateBuyVsRent()">
+    </form>
+    <p id="result"></p>
+
+    <script src="buy_vs_rent_calculator.js"></script>
+</body>
+</html>
+
