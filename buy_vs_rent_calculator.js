@@ -1,9 +1,9 @@
 function calculateBuyVsRent() {
-    var homePrice = document.getElementById('homePrice').value;
-    var downPayment = document.getElementById('downPayment').value;
-    var loanTerm = document.getElementById('loanTerm').value * 12;
-    var interestRate = document.getElementById('interestRate').value / 100 / 12;
-    var monthlyRent = document.getElementById('monthlyRent').value;
+    var homePrice = parseFloat(document.getElementById('homePrice').value.replace(/,/g, ''));
+    var downPayment = parseFloat(document.getElementById('downPayment').value.replace(/,/g, ''));
+    var loanTerm = parseFloat(document.getElementById('loanTerm').value.replace(/,/g, '')) * 12;
+    var interestRate = parseFloat(document.getElementById('interestRate').value.replace(/,/g, '')) / 100 / 12;
+    var monthlyRent = parseFloat(document.getElementById('monthlyRent').value.replace(/,/g, ''));
 
     var loanAmount = homePrice - downPayment;
     var monthlyMortgage = (loanAmount * interestRate * Math.pow(1 + interestRate, loanTerm)) / (Math.pow(1 + interestRate, loanTerm) - 1);
@@ -17,4 +17,3 @@ function calculateBuyVsRent() {
                                                    "Total cost of buying: $" + totalCostBuying.toFixed(2) + "<br>" +
                                                    "Total cost of renting: $" + totalCostRenting.toFixed(2);
 }
-
