@@ -9,10 +9,10 @@
     <h1>Buy vs Rent Calculator</h1>
     <form id="calculatorForm">
         <label for="homePrice">Home Price ($):</label>
-        <input type="text" id="homePrice" name="homePrice" value="1000000"><br><br>
+        <input type="text" id="homePrice" name="homePrice" value="1,000,000"><br><br>
 
         <label for="downPayment">Down Payment ($):</label>
-        <input type="text" id="downPayment" name="downPayment" value="200000"><br><br>
+        <input type="text" id="downPayment" name="downPayment" value="200,000"><br><br>
 
         <label for="loanTerm">Loan Term (years):</label>
         <input type="text" id="loanTerm" name="loanTerm" value="30"><br><br>
@@ -20,29 +20,32 @@
         <label for="interestRate">Interest Rate (%):</label>
         <input type="text" id="interestRate" name="interestRate" value="8"><br><br>
 
-        <label for="monthlyRent">Monthly Rent ($):</label>
-        <input type="text" id="monthlyRent" name="monthlyRent" value="5000"><br><br>
-
-        <label for="appreciationRate">Home Appreciation Rate (%):</label>
-        <input type="text" id="appreciationRate" name="appreciationRate" value="2.0"><br><br>
+        <label for="homeAppreciationRate">Home Appreciation Rate (%):</label>
+        <input type="text" id="homeAppreciationRate" name="homeAppreciationRate" value="2"><br><br>
 
         <label for="sellingCosts">Selling Costs (%):</label>
         <input type="text" id="sellingCosts" name="sellingCosts" value="6"><br><br>
 
-        <label for="propertyTaxRate">Property Tax Rate (%):</label>
+        <label for="propertyTaxRate">Property Tax (%):</label>
         <input type="text" id="propertyTaxRate" name="propertyTaxRate" value="1.35"><br><br>
 
         <label for="initialBuyingCosts">Initial Buying Costs (%):</label>
         <input type="text" id="initialBuyingCosts" name="initialBuyingCosts" value="4"><br><br>
 
-        <label for="annualInsuranceCosts">Annual Insurance Costs (%):</label>
+        <label for="annualInsuranceCosts">Annual Insurance Costs (% of home price):</label>
         <input type="text" id="annualInsuranceCosts" name="annualInsuranceCosts" value="0.35"><br><br>
 
-        <label for="annualMaintenanceCosts">Annual Maintenance Costs (%):</label>
+        <label for="annualMaintenanceCosts">Annual Maintenance Costs (% of home value):</label>
         <input type="text" id="annualMaintenanceCosts" name="annualMaintenanceCosts" value="0.5"><br><br>
 
         <label for="monthlyCommonCharges">Monthly Common Charges ($):</label>
         <input type="text" id="monthlyCommonCharges" name="monthlyCommonCharges" value="0"><br><br>
+
+        <label for="monthlyRent">Monthly Rent ($):</label>
+        <input type="text" id="monthlyRent" name="monthlyRent" value="5,000"><br><br>
+
+        <label for="annualRentIncrease">Annual Rent Increase (%):</label>
+        <input type="text" id="annualRentIncrease" name="annualRentIncrease" value="2"><br><br>
 
         <label for="marginalTaxRate">Marginal Tax Rate (%):</label>
         <input type="text" id="marginalTaxRate" name="marginalTaxRate" value="37"><br><br>
@@ -56,7 +59,9 @@
         <input type="button" value="Calculate" onclick="calculateBuyVsRent()">
     </form>
     <div id="result"></div>
-	<script src="tax_calculations.js"></script>
+
+    <!-- Include the JavaScript files -->
+    <script src="tax_calculations.js"></script>
     <script src="buy_vs_rent_calculator.js"></script>
 </body>
 </html>
