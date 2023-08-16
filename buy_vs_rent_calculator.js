@@ -30,11 +30,14 @@ function calculateBuyVsRent() {
     // Result variables
     var cumulativeBuyingCost = downPayment + (homePrice * initialBuyingCostsRate);
     var cumulativeRent = 0;
-    var investmentAccountBalance = 0;
-	
-    // Initial investment account balance
     var initialInvestment = downPayment + (homePrice * initialBuyingCostsRate) - monthlyRent * 12;
     var investmentAccountBalance = initialInvestment;
+
+    // Arrays to hold the data for the chart
+    var years = [];
+    var netProceedsData = [];
+    var investmentAccountData = [];
+    var differenceData = [];
 
     // Result table
     var resultTable = '<table><tr><th>Year</th><th>Buy Outlay</th><th>Home Price</th><th>Mortgage Balance</th><th>Home Equity</th><th>Rent Paid</th><th>Tax Savings</th><th>Investment Account</th><th>Net Proceeds After Sale</th><th>Investment vs Sale Proceeds Difference</th></tr>';
@@ -62,14 +65,65 @@ function calculateBuyVsRent() {
         var netProceedsAfterSale = homePrice - sellingCosts - remainingLoanBalance;
         var investmentVsSaleProceedsDifference = investmentAccountBalance - netProceedsAfterSale;
 
-		resultTable += '<tr><td>' + year + '</td><td>' + formatNumber(cumulativeBuyingCost) + '</td><td>' + formatNumber(homePrice) + '</td><td>' + formatNumber(remainingLoanBalance) + '</td><td>' + formatNumber(homeEquity) + '</td><td>' + formatNumber(cumulativeRent) + '</td><td>' + formatNumber(taxSavings) + '</td><td>' + formatNumber(investmentAccountBalance) + '</td><td>' + formatNumber(netProceedsAfterSale) + '</td><td>' + formatNumber(investmentVsSaleProceedsDifference) + '</td></tr>';
+        // Collect data for the chart
+        years.push(year);
+        netProceedsData.push(netProceedsAfterSale);
+        investmentAccountData.push(investmentAccountBalance);
+        differenceData.push(investmentVsSaleProceedsDifference);
 
-        // Update for next iteration
+        resultTable += '<tr><td>' + year + '</td><td>' + formatNumber(cumulativeBuyingCost) + '</td><td>' + formatNumber(homePrice) + '</td><td>' + formatNumber(remainingLoanBalance) + '</td><td>' + formatNumber(homeEquity) + '</td><td>' + formatNumber(cumulativeRent) + '</td><td>' + formatNumber(taxSavings) + '</td><td>' + formatNumber(investmentAccountBalance) + '</td><td>' + formatNumber(netProceedsAfterSale) + '</td><td>' + formatNumber(investmentVsSaleProceedsDifference) + '</td></tr>';
+
+        // Update variables for next year
+        remainingLoanBalance -= (monthlyPayment * 12 - interestPaid);
         homePrice *= (1 + homeAppreciationRate);
         monthlyRent *= (1 + annualRentIncrease);
-        remainingLoanBalance -= (monthlyPayment * 12 - interestPaid);
     }
 
     resultTable += '</table>';
     document.getElementById("result").innerHTML = resultTable;
+
+    // Create the chart
+    var ctx = document.getElementById('chart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [
+                {
+                    label: 'Net Proceeds After Sale',
+                    data: netProceedsData,
+                    borderColor: 'blue',
+                    fill: false
+                },
+                {
+                    label: 'Investment Account',
+                    data: investmentAccountData,
+                    borderColor: 'green',
+                    fill: false
+                },
+                {
+                    label: 'Difference',
+                    data: differenceData,
+                    borderColor: 'red',
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Amount ($)'
+                    }
+                }
+            }
+        }
+    });
 }

@@ -4,34 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy vs Rent Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
     <style>
         table {
             border-collapse: collapse;
             width: 100%;
         }
-
         th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: left;
         }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
         th {
             background-color: #f2f2f2;
-            color: black;
         }
     </style>
 </head>
 <body>
     <h1>Buy vs Rent Calculator</h1>
-    <p>The "Investment Account" column represents the investment potential of the renter when spending less on down payment and other costs. The balance grows or shrinks based on spending differences and the specified interest rate.</p>
-    <form id="calculatorForm">
-        <label for="homePrice">Home Price ($):</label>
-        <input type="text" id="homePrice" name="homePrice" value="1,000,000"><br><br>
+    <form onsubmit="calculateBuyVsRent(); return false;">
+        <label for="homePrice">Home Price:</label>
+        <input type="text" id="homePrice" name="homePrice" value="1000000"><br><br>
         <label for="downPayment">Down Payment ($):</label>
         <input type="text" id="downPayment" name="downPayment" value="200,000"><br><br>
         <label for="loanTerm">Loan Term (years):</label>
@@ -66,10 +59,11 @@
         <input type="checkbox" id="filingMarried" name="filingMarried" checked><br><br>
         <input type="button" value="Calculate" onclick="calculateBuyVsRent()">
     </form>
-    <div id="result"></div>
-
-    <!-- Include the JavaScript files -->
-    <script src="tax_calculations.js"></script>
-    <script src="buy_vs_rent_calculator.js"></script>
-</body>
-</html>
+	<div id="result"></div>
+	    <div style="width: 80%; margin: 20px auto;">
+	        <canvas id="chart"></canvas>
+	    </div>
+	    <script src="buy_vs_rent_calculator.js"></script>
+	    <script src="tax_calculations.js"></script>
+	</body>
+	</html>
